@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGHEZOU LUX CAR - تأجير سيارات فاخرة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E0B85A;
+    --gold-dark: #A8852F;
+    --black: #0D0D0D;
+    --dark: #141414;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --white: #FFFFFF;
+    --off-white: #F5F0E8;
+    --gray: #CCCCCC;
+    --gray2: #888888;
+    --section-bg: #F8F6F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  /* ===== LANGUAGE SELECTOR ===== */
+  .language-selector {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    gap: 8px;
+    background: rgba(0,0,0,0.8);
+    padding: 8px 12px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+  }
+  .language-selector button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    transition: all 0.3s;
+  }
+  .language-selector button.active {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+  .language-selector button:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* ===== TOPBAR ===== */
+  .topbar {
+    background: var(--black);
+    color: var(--white);
+    padding: 8px 0;
+    font-size: 13px;
+  }
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-phone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    direction: ltr;
+  }
+  .topbar-phone:hover { color: var(--gold); }
+  .topbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .topbar-icons a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  .topbar-icons a:hover { color: var(--gold); }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    background: var(--black);
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-top: 1px solid #2a2a2a;
+  }
+  .navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-img {
+    width: 80px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .logo-text span:first-child {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .logo-text span:last-child {
+    font-size: 10px;
+    color: var(--white);
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-links a.active::after { width: 100%; }
+
+  .btn-book {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .btn-book:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* Mobile menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 26px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    display: block;
+  }
+  .mobile-menu {
+    display: none;
+    background: var(--dark);
+    padding: 20px;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    border-top: 1px solid var(--gold);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu ul { list-style: none; }
+  .mobile-menu ul li { padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+  .mobile-menu ul li a { color: var(--white); text-decoration: none; font-size: 16px; font-weight: 600; }
+  .mobile-menu ul li a:hover { color: var(--gold); }
+  .mobile-menu .btn-book { margin-top: 16px; width: 100%; justify-content: center; }
+
+  /* ===== BOOKING MODAL ===== */
+  .booking-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+  }
+  .booking-modal.open {
+    display: flex;
+  }
+  .booking-form {
+    background: var(--dark2);
+    border: 2px solid var(--gold);
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .booking-form h3 {
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    color: var(--white);
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background: var(--dark3);
+    border: 1px solid #444;
+    color: var(--white);
+    border-radius: 5px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+  }
+  .form-group textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  .btn-submit {
+    background: var(--gold);
+    color: var(--black);
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .btn-close {
+    background: #666;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    margin-top: 10px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 500px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0d0d0d 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('image1.jpeg') center/cover no-repeat;
+    opacity: 0.4;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+
+  .hero-brand-name {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 6px;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(201,168,76,0.6);
+  }
+  .hero-brand-sub {
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--white);
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .hero-tagline-ar {
+    font-size: clamp(20px, 3.5vw, 34px);
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .hero-tagline-fr {
+    font-size: clamp(12px, 2vw, 18px);
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .hero-divider {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 16px 20px 0;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
+  /* Brands strip */
+  .brands-strip {
+    background: var(--black);
+    padding: 18px 0 24px;
+    border-top: 1px solid #2a2a2a;
+  }
+  .brands-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .brand-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .brand-item:hover { opacity: 1; }
+  .brand-item svg { width: 36px; height: 36px; fill: var(--white); }
+  .brand-item span {
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* ===== WHY US ===== */
+  .why-us {
+    background: var(--white);
+    padding: 60px 20px;
+  }
+  .why-box {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    padding: 50px 40px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 40px;
+    border-radius: 2px;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+  }
+  .why-card { padding: 10px; }
+  .why-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    color: var(--gold);
+  }
+  .why-icon svg { width: 100%; height: 100%; }
+  .why-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .why-desc {
+    font-size: 13px;
+    color: var(--gray2);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* ===== FLEET ===== */
+  .fleet {
+    background: var(--section-bg);
+    padding: 70px 20px;
+  }
+  .fleet-inner { max-width: 1200px; margin: 0 auto; }
+
+  /* Category buttons */
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .category-btn {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .category-btn:hover,
+  .category-btn.active {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .car-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    border: 1px solid #eee;
+  }
+  .car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .car-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .car-card-body {
+    padding: 16px;
+  }
+  .car-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+  .car-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--black);
+  }
+  .car-transmission {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 15px;
+  }
+  .trans-auto {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+  .trans-manual {
+    background: #fff3e0;
+    color: #e65100;
+  }
+  .car-fuel {
+    font-size: 12px;
+    color: var(--gray2);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .price-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .price-box {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .price-label {
+    font-size: 10px;
+    color: var(--gray2);
+    margin-bottom: 2px;
+  }
+  .price-value {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--gold-dark);
+  }
+  .price-dhm {
+    font-size: 11px;
+    color: var(--gray2);
+  }
+  .btn-rent {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .btn-rent:hover {
+    background: var(--gold-dark);
+    transform: translateY(-2px);
+  }
+
+  .hidden { display: none; }
+
+  /* ===== SERVICES ===== */
+  .services {
+    background: var(--dark);
+    padding: 70px 20px;
+  }
+  .services .section-title { color: var(--white); }
+  .services-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .service-card:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    color: var(--gold);
+    margin: 0 auto 16px;
+  }
+  .service-icon svg { width: 100%; height: 100%; }
+  .service-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* ===== LOCATION ===== */
+  .location-section {
+    background: var(--white);
+    padding: 70px 20px;
+  }
+  .location-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .location-img {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+  .location-img img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+  .location-info h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--black);
+  }
+  .location-info h2 svg { color: var(--gold); width: 26px; height: 26px; }
+  .location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+  .location-detail svg {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+  }
+  .location-detail a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .location-detail a:hover { text-decoration: underline; }
+  .status-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #28a745;
+    font-weight: 700;
+  }
+  .dot-open {
+    width: 8px;
+    height: 8px;
+    background: #28a745;
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ===== INSTAGRAM ===== */
+  .instagram-section {
+    background: var(--section-bg);
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .insta-handle {
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  .insta-grid {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .insta-item {
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .insta-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .insta-item:hover img { transform: scale(1.08); }
+  .insta-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(201,168,76,0);
+    transition: background 0.3s;
+  }
+  .insta-item:hover::after { background: rgba(201,168,76,0.2); }
+
+  .btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-outline-gold:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    background: var(--black);
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-text h2 {
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .cta-text p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--dark2);
+    padding: 50px 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+  .footer-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-desc {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .footer-tagline {
+    color: var(--gold);
+    font-size: 12px;
+    font-style: italic;
+  }
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  .footer-links li::before {
+    content: '◂ ';
+    color: var(--gold);
+    font-size: 10px;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.5;
+    direction: ltr;
+    text-align: left;
+  }
+  .footer-contact-item svg {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .footer-contact-item a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .footer-contact-item a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid #2a2a2a;
+    padding: 18px 0;
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-bottom span { color: var(--gold); }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .brands-inner { gap: 24px; }
+  }
+
+  @media (max-width: 768px) {
+    .topbar-icons { display: none; }
+    .nav-links { display: none; }
+    .btn-book.desktop-btn { display: none; }
+    .hamburger { display: flex; }
+    .navbar { position: relative; }
+
+    .hero { min-height: auto; }
+    .fleet-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .location-inner { grid-template-columns: 1fr; }
+    .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cta-inner { flex-direction: column; text-align: center; }
+    .why-box { padding: 30px 20px; }
+    .brands-inner { gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-brand-name { font-size: 30px; }
+    .price-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE SELECTOR -->
+<div class="language-selector">
+  <button onclick="changeLanguage('ar')" class="active" data-lang="ar">العربية</button>
+  <button onclick="changeLanguage('fr')" data-lang="fr">Français</button>
+  <button onclick="changeLanguage('en')" data-lang="en">English</button>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="booking-modal" id="bookingModal">
+  <div class="booking-form">
+    <h3 data-translate="bookingTitle">احجز سيارتك الآن</h3>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label data-translate="name">الاسم الكامل</label>
+        <input type="text" id="bookingName" required>
+      </div>
+      <div class="form-group">
+        <label data-translate="phone">رقم الهاتف</label>
+        <input type="tel" id="bookingPhone" required>
+      </div>
+      <div class="form-group">
+        <label data-translate="car">السيارة المطلوبة</label>
+        <select id="bookingCar" required>
+          <option value="">-- اختر السيارة --</option>
+          <option value="Clio 5 أوتو Essence">Clio 5 أوتو Essence - 300/350 درهم</option>
+          <option value="Clio 5 مانويل Mazout">Clio 5 مانويل Mazout - 300/350 درهم</option>
+          <option value="Dacia Logan مانويل Mazout">Dacia Logan مانويل Mazout - 300/350 درهم</option>
+          <option value="Opel Corsa مانويل Mazout">Opel Corsa مانويل Mazout - 300/350 درهم</option>
+          <option value="Accent أوتو Essence">Accent أوتو Essence - 300/350 درهم</option>
+          <option value="I20 أوتو Essence">I20 أوتو Essence - 300/350 درهم</option>
+          <option value="I10 أوتو Essence">I10 أوتو Essence - 300/350 درهم</option>
+          <option value="208 أوتو Essence">208 أوتو Essence - 300/350 درهم</option>
+          <option value="208 مانويل Diesel">208 مانويل Diesel - 300/350 درهم</option>
+          <option value="Kardian أوتو Essence">Kardian أوتو Essence - 330/380 درهم</option>
+          <option value="Kardian مانويل Mazout">Kardian مانويل Mazout - 330/380 درهم</option>
+          <option value="Kia Sportage أوتو Mazout">Kia Sportage أوتو Mazout - 450/550 درهم</option>
+          <option value="Tucson أوتو Mazout">Tucson أوتو Mazout - 500/650 درهم</option>
+          <option value="Arkana أوتو Hybride">Arkana أوتو Hybride - 500/600 درهم</option>
+          <option value="T-Roc / Golf 8.5 أوتو Mazout">T-Roc / Golf 8.5 أوتو Mazout - 700/850 درهم</option>
+          <option value="Touareg أوتو Mazout">Touareg أوتو Mazout - 1500/1800 درهم</option>
+          <option value="Porsche أوتو Essence">Porsche أوتو Essence - 2500/3000 درهم</option>
+          <option value="Range Sport أوتو Mazout">Range Sport أوتو Mazout - 3300/3800 درهم</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-translate="pickup">مكان الاستلام</label>
+        <input type="text" id="bookingPickup" required>
+      </div>
+      <div class="form-group">
+        <label data-translate="dropoff">مكان التسليم</label>
+        <input type="text" id="bookingDropoff" required>
+      </div>
+      <div class="form-group">
+        <label data-translate="note">ملاحظة</label>
+        <textarea id="bookingNote"></textarea>
+      </div>
+      <button type="submit" class="btn-submit" data-translate="send">إرسال الحجز</button>
+      <button type="button" class="btn-close" onclick="closeBooking()" data-translate="close">إغلاق</button>
+    </form>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="tel:+212600967655" class="topbar-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      +212 600-967655
+    </a>
+    <div class="topbar-icons">
+      <a href="https://instagram.com/rental_car_a81" target="_blank" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="#location" title="Location">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </a>
+      <a href="mailto:aghezou.car@gmail.com" title="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="AGHEZOU LUX CAR" class="logo-img">
+      <div class="logo-text">
+        <span>AGHEZOU</span>
+        <span>LUX CAR</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero" class="active" data-translate="home">الرئيسية</a></li>
+      <li><a href="#fleet" data-translate="fleet">أسطول السيارات</a></li>
+      <li><a href="#services" data-translate="services">خدماتنا</a></li>
+      <li><a href="#about" data-translate="about">من نحن</a></li>
+      <li><a href="#contact" data-translate="contact">اتصل بنا</a></li>
+    </ul>
+
+    <button onclick="openBooking()" class="btn-book desktop-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+      <span data-translate="bookNow">احجز الآن</span>
+    </button>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#hero" onclick="toggleMenu()" data-translate="home">الرئيسية</a></li>
+      <li><a href="#fleet" onclick="toggleMenu()" data-translate="fleet">أسطول السيارات</a></li>
+      <li><a href="#services" onclick="toggleMenu()" data-translate="services">خدماتنا</a></li>
+      <li><a href="#about" onclick="toggleMenu()" data-translate="about">من نحن</a></li>
+      <li><a href="#contact" onclick="toggleMenu()" data-translate="contact">اتصل بنا</a></li>
+    </ul>
+    <button onclick="openBooking()" class="btn-book">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+      <span data-translate="bookNow">احجز الآن</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-brand-name">AGHEZOU</div>
+    <div class="hero-brand-sub">LUX CAR</div>
+    <div class="hero-tagline-ar" data-translate="tagline1">عش تجربة قيادة فاخرة</div>
+    <div class="hero-tagline-fr" data-translate="tagline2">LA LOCATION D'EXCELLENCE</div>
+  </div>
+  <div class="hero-divider">TOUTES LES MARQUES, TOUS VOS BESOINS</div>
+  <div class="brands-strip">
+    <div class="brands-inner">
+      <div class="brand-item">
+        <svg viewBox="0 0 60 30"><text x="30" y="22" font-family="Arial Black" font-size="16" font-weight="900" fill="white" text-anchor="middle">H</text></svg>
+        <span>HYUNDAI</span>
+      </div>
+      <div class="brand-item">
+        <svg viewBox="0 0 80 30"><circle cx="14" cy="15" r="10" fill="none" stroke="white" stroke-width="2.5"/><circle cx="30" cy="15" r="10" fill="none" stroke="white" stroke-width="2.5"/><circle cx="46" cy="15" r="10" fill="none" stroke="white" stroke-width="2.5"/><circle cx="62" cy="15" r="10" fill="none" stroke="white" stroke-width="2.5"/></svg>
+        <span>Audi</span>
+      </div>
+      <div class="brand-item">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="white" stroke-width="2"/><path d="M12 13 L17 27 L20 21 L23 27 L28 13" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Volkswagen</span>
+      </div>
+      <div class="brand-item">
+        <svg viewBox="0 0 40 40"><polygon points="20,4 36,12 36,28 20,36 4,28 4,12" fill="none" stroke="white" stroke-width="2"/></svg>
+        <span>RENAULT</span>
+      </div>
+      <div class="brand-item">
+        <svg viewBox="0 0 40 40"><path d="M20 4 L36 20 L20 36 L4 20 Z" fill="none" stroke="white" stroke-width="2"/></svg>
+        <span>PORSCHE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="about">
+  <div class="why-box reveal">
+    <h2 class="section-title" data-translate="whyUs">لماذا نختارنا؟</h2>
+    <div class="section-divider"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h5l2 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="why-title" data-translate="freeDelivery">توصيل مجاني</div>
+        <div class="why-desc" data-translate="freeDeliveryDesc">توصيل واستلام في المطار</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3z"/></svg></div>
+        <div class="why-title" data-translate="proService">خدمة احترافية</div>
+        <div class="why-desc" data-translate="proServiceDesc">فريق متاح لخدمتك 24/7</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m-4 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+        <div class="why-title" data-translate="modernCars">سيارات حديثة</div>
+        <div class="why-desc" data-translate="modernCarsDesc">أسطول متجدد ومتنوع</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div class="why-title" data-translate="bestPrice">أسعار تنافسية</div>
+        <div class="why-desc" data-translate="bestPriceDesc">أفضل الأسعار للجودة الأعلى</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="fleet-inner">
+    <h2 class="section-title reveal" data-translate="ourFleet">أسطول السيارات</h2>
+    <div class="section-divider reveal"></div>
+    
+    <div class="category-buttons reveal">
+      <button class="category-btn active" onclick="filterCars('all')" data-translate="allCars">عرض الكل</button>
+      <button class="category-btn" onclick="filterCars('economy')" data-translate="economy">اقتصادية</button>
+      <button class="category-btn" onclick="filterCars('suv')" data-translate="suv">متوسطة</button>
+      <button class="category-btn" onclick="filterCars('luxury')" data-translate="luxury">فاخرة</button>
+    </div>
+
+    <div class="fleet-grid reveal" id="carsGrid">
+      <!-- Car 1: Clio 5 أوتو Essence -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars1.jpeg" alt="Clio 5 أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Clio 5</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 2: Clio 5 مانويل Mazout -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars2.jpeg" alt="Clio 5 مانويل Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Clio 5</div>
+            <span class="car-transmission trans-manual">مانويل</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 3: Dacia Logan مانويل Mazout -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars3.jpeg" alt="Dacia Logan مانويل Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Dacia Logan</div>
+            <span class="car-transmission trans-manual">مانويل</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 4: Opel Corsa مانويل Mazout -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars4.jpeg" alt="Opel Corsa مانويل Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Opel Corsa</div>
+            <span class="car-transmission trans-manual">مانويل</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 5: Accent أوتو Essence -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars5.jpeg" alt="Accent أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Accent</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 6: I20 أوتو Essence -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars6.jpeg" alt="I20 أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">I20</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 7: I10 أوتو Essence -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars7.jpeg" alt="I10 أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">I10</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 8: 208 أوتو Essence -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars8.jpeg" alt="208 أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">208</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 9: 208 مانويل Diesel -->
+      <div class="car-card" data-category="economy" data-price="300" data-price-summer="350">
+        <img src="cars9.jpeg" alt="208 مانويل Diesel">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">208</div>
+            <span class="car-transmission trans-manual">مانويل</span>
+          </div>
+          <div class="car-fuel">⛽ Diesel</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">350</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 10: Kardian أوتو Essence -->
+      <div class="car-card" data-category="suv" data-price="330" data-price-summer="380">
+        <img src="cars10.jpeg" alt="Kardian أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Kardian</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">330</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">380</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 11: Kardian مانويل Mazout -->
+      <div class="car-card" data-category="suv" data-price="330" data-price-summer="380">
+        <img src="cars11.jpeg" alt="Kardian مانويل Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Kardian</div>
+            <span class="car-transmission trans-manual">مانويل</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">330</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">380</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 12: Kia Sportage أوتو Mazout -->
+      <div class="car-card" data-category="suv" data-price="450" data-price-summer="550">
+        <img src="cars12.jpeg" alt="Kia Sportage أوتو Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Kia Sportage</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">450</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">550</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 13: Tucson أوتو Mazout -->
+      <div class="car-card" data-category="suv" data-price="500" data-price-summer="650">
+        <img src="cars13.jpeg" alt="Tucson أوتو Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Tucson</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">500</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">650</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 14: Arkana أوتو Hybride -->
+      <div class="car-card" data-category="suv" data-price="500" data-price-summer="600">
+        <img src="cars14.jpeg" alt="Arkana أوتو Hybride">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Arkana</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Hybride</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">500</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">600</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 15: T-Roc / Golf 8.5 أوتو Mazout -->
+      <div class="car-card" data-category="luxury" data-price="700" data-price-summer="850">
+        <img src="cars15.jpeg" alt="T-Roc / Golf 8.5 أوتو Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">T-Roc / Golf 8.5</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">700</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">850</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 16: Touareg أوتو Mazout -->
+      <div class="car-card" data-category="luxury" data-price="1500" data-price-summer="1800">
+        <img src="cars16.jpeg" alt="Touareg أوتو Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Touareg</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">1500</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">1800</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 17: Porsche أوتو Essence -->
+      <div class="car-card" data-category="luxury" data-price="2500" data-price-summer="3000">
+        <img src="cars17.jpeg" alt="Porsche أوتو Essence">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Porsche</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Essence</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">2500</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">3000</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+
+      <!-- Car 18: Range Sport أوتو Mazout -->
+      <div class="car-card" data-category="luxury" data-price="3300" data-price-summer="3800">
+        <img src="cars18.jpeg" alt="Range Sport أوتو Mazout">
+        <div class="car-card-body">
+          <div class="car-header">
+            <div class="car-name">Range Sport</div>
+            <span class="car-transmission trans-auto">أوتو</span>
+          </div>
+          <div class="car-fuel">⛽ Mazout</div>
+          <div class="price-section">
+            <div class="price-box">
+              <div class="price-label">أيام عادية</div>
+              <div class="price-value">3300</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+            <div class="price-box">
+              <div class="price-label">الصيف/العطل</div>
+              <div class="price-value">3800</div>
+              <div class="price-dhm">درهم/يوم</div>
+            </div>
+          </div>
+          <button class="btn-rent" onclick="openBooking()">احجز الآن</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <h2 class="section-title reveal" data-translate="ourServices">خدماتنا</h2>
+  <div class="section-divider reveal"></div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+      <div class="service-title" data-translate="airportDelivery">توصيل للمطار</div>
+      <div class="service-desc" data-translate="airportDeliveryDesc">توصيل واستلام من وإلى مطار محمد الخامس الدولي</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div>
+      <div class="service-title" data-translate="longTerm">تأجير طويل المدى</div>
+      <div class="service-desc" data-translate="longTermDesc">عروض خاصة للإيجار طويل المدى للأفراد والشركات</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="service-title" data-translate="luxuryRental">تأجير سيارات فاخرة</div>
+      <div class="service-desc" data-translate="luxuryRentalDesc">استمتع بتجربة قيادة استثنائية مع أفخم السيارات</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h5l2 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div class="service-title" data-translate="carRental">تأجير السيارات</div>
+      <div class="service-desc" data-translate="carRentalDesc">مجموعة واسعة من السيارات تناسب جميع احتياجاتك</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="location-inner reveal">
+    <div class="location-img">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80&fit=crop" alt="مطار محمد الخامس" loading="lazy">
+    </div>
+    <div class="location-info">
+      <h2><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span data-translate="location">موقعنا</span></h2>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#C9A84C"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        <span data-translate="airportLocation">مطار محمد الخامس الدولي – الدار البيضاء، المغرب</span>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#28a745"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        <span class="status-open"><span class="dot-open"></span><span data-translate="openNow">مفتوح الآن – مدار اليوم</span></span>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#C9A84C"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        <a href="tel:+212600967655" dir="ltr">+212 600-967655</a>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#C9A84C"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:aghezou.car@gmail.com">aghezou.car@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="instagram-section">
+  <h2 class="section-title reveal"><svg width="28" height="28" viewBox="0 0 24 24" fill="#C9A84C" style="vertical-align:middle;margin-left:8px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07..."/></svg> <span data-translate="followInsta">تابعنا على إنستغرام</span></h2>
+  <div class="insta-handle reveal">@rental_car_a81 · 516</div>
+  <div class="insta-grid reveal">
+    <div class="insta-item"><img src="sora1.jpeg" alt="Instagram" loading="lazy"></div>
+    <div class="insta-item"><img src="sora2.jpeg" alt="Instagram" loading="lazy"></div>
+    <div class="insta-item"><img src="sora3.jpeg" alt="Instagram" loading="lazy"></div>
+    <div class="insta-item"><img src="sora4.jpeg" alt="Instagram" loading="lazy"></div>
+    <div class="insta-item"><img src="sora5.jpeg" alt="Instagram" loading="lazy"></div>
+  </div>
+  <div class="reveal">
+    <a href="https://instagram.com/rental_car_a81" target="_blank" class="btn-outline-gold"><span data-translate="moreInsta">عرض المزيد على إنستغرام</span></a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2 data-translate="ctaTitle">جاهز لرحلتك القادمة؟</h2>
+      <p data-translate="ctaDesc">احجز سيارتك الآن واستمتع بتجربة قيادة لا تُنسى</p>
+    </div>
+    <button onclick="openBooking()" class="btn-gold"><span data-translate="bookNow">احجز الآن</span></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="logo.png" alt="AGHEZOU LUX CAR" style="width:80px;height:40px;object-fit:cover;border-radius:5px">
+        <div><span style="font-size:18px;font-weight:900;color:#C9A84C">AGHEZOU</span><br><span style="font-size:10px;color:#fff9">LUX CAR</span></div>
+      </div>
+      <p class="footer-desc" data-translate="footerDesc">نحن في AGHEZOU LUX CAR نقدم خدمات تأجير السيارات الفاخرة بمطار محمد الخامس الدولي.</p>
+    </div>
+    <div>
+      <h4 data-translate="quickLinks">روابط سريعة</h4>
+      <ul class="footer-links">
+        <li><a href="#hero" data-translate="home">الرئيسية</a></li>
+        <li><a href="#fleet" data-translate="fleet">أسطول السيارات</a></li>
+        <li><a href="#services" data-translate="services">خدماتنا</a></li>
+        <li><a href="#about" data-translate="about">من نحن</a></li>
+        <li><a href="#contact" data-translate="contact">اتصل بنا</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-translate="contactInfo">معلومات الاتصال</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8..."/></svg> <a href="tel:+212600967655">+212 600-967655</a></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4..."/></svg> <a href="mailto:aghezou.car@gmail.com">aghezou.car@gmail.com</a></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13..."/></svg> <span data-translate="footerLocation">مطار محمد الخامس<br>الدار البيضاء</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span data-translate="copyright">© 2024 جميع الحقوق محفوظة</span> <span>Aghezou AGHEZOU Car</span></div>
+</footer>
+
+<script>
+  // ===== LANGUAGE SYSTEM =====
+  const translations = {
+    ar: {
+      home: 'الرئيسية', fleet: 'أسطول السيارات', services: 'خدماتنا', about: 'من نحن', contact: 'اتصل بنا',
+      bookNow: 'احجز الآن', tagline1: 'عش تجربة قيادة فاخرة', tagline2: "LA LOCATION D'EXCELLENCE",
+      whyUs: 'لماذا نختارنا؟', freeDelivery: 'توصيل مجاني', freeDeliveryDesc: 'توصيل واستلام في المطار',
+      proService: 'خدمة احترافية', proServiceDesc: 'فريق متاح لخدمتك 24/7',
+      modernCars: 'سيارات حديثة', modernCarsDesc: 'أسطول متجدد ومتنوع',
+      bestPrice: 'أسعار تنافسية', bestPriceDesc: 'أفضل الأسعار للجودة الأعلى',
+      ourFleet: 'أسطول السيارات', allCars: 'عرض الكل', economy: 'اقتصادية', suv: 'متوسطة', luxury: 'فاخرة',
+      ourServices: 'خدماتنا', airportDelivery: 'توصيل للمطار', airportDeliveryDesc: 'توصيل واستلام من وإلى مطار محمد الخامس الدولي',
+      longTerm: 'تأجير طويل المدى', longTermDesc: 'عروض خاصة للإيجار طويل المدى',
+      luxuryRental: 'تأجير سيارات فاخرة', luxuryRentalDesc: 'استمتع بتجربة قيادة استثنائية',
+      carRental: 'تأجير السيارات', carRentalDesc: 'مجموعة واسعة من السيارات',
+      location: 'موقعنا', airportLocation: 'مطار محمد الخامس الدولي – الدار البيضاء، المغرب',
+      openNow: 'مفتوح الآن – مدار اليوم', followInsta: 'تابعنا على إنستغرام', moreInsta: 'عرض المزيد على إنستغرام',
+      ctaTitle: 'جاهز لرحلتك القادمة؟', ctaDesc: 'احجز سيارتك الآن واستمتع بتجربة قيادة لا تُنسى',
+      footerDesc: 'نحن في AGHEZOU LUX CAR نقدم خدمات تأجير السيارات الفاخرة بمطار محمد الخامس الدولي.',
+      quickLinks: 'روابط سريعة', contactInfo: 'معلومات الاتصال', footerLocation: 'مطار محمد الخامس<br>الدار البيضاء',
+      copyright: '© 2024 جميع الحقوق محفوظة', bookingTitle: 'احجز سيارتك الآن',
+      name: 'الاسم الكامل', phone: 'رقم الهاتف', car: 'السيارة المطلوبة',
+      pickup: 'مكان الاستلام', dropoff: 'مكان التسليم', note: 'ملاحظة', send: 'إرسال الحجز', close: 'إغلاق'
+    },
+    fr: {
+      home: 'Accueil', fleet: 'Flotte', services: 'Services', about: 'À propos', contact: 'Contact',
+      bookNow: 'Réserver', tagline1: 'Vivez une expérience de conduite luxueuse', tagline2: "LA LOCATION D'EXCELLENCE",
+      whyUs: 'Pourquoi nous choisir?', freeDelivery: 'Livraison gratuite', freeDeliveryDesc: "Livraison et récupération à l'aéroport",
+      proService: 'Service professionnel', proServiceDesc: 'Équipe disponible 24/7',
+      modernCars: 'Voitures modernes', modernCarsDesc: 'Flotte renouvelée et diversifiée',
+      bestPrice: 'Prix compétitifs', bestPriceDesc: 'Meilleurs prix pour la plus haute qualité',
+      ourFleet: 'Notre Flotte', allCars: 'Toutes', economy: 'Économique', suv: 'Moyenne', luxury: 'Luxe',
+      ourServices: 'Nos Services', airportDelivery: 'Livraison aéroport', airportDeliveryDesc: "Livraison et récupération à l'aéroport Mohammed V",
+      longTerm: 'Location longue durée', longTermDesc: 'Offres spéciales pour location longue durée',
+      luxuryRental: 'Location de luxe', luxuryRentalDesc: 'Expérience exceptionnelle avec nos voitures de luxe',
+      carRental: 'Location de voitures', carRentalDesc: 'Large gamme de véhicules',
+      location: 'Emplacement', airportLocation: 'Aéroport Mohammed V - Casablanca, Maroc',
+      openNow: 'Ouvert maintenant - 24/7', followInsta: 'Suivez-nous sur Instagram', moreInsta: 'Voir plus sur Instagram',
+      ctaTitle: 'Prêt pour votre prochain voyage?', ctaDesc: 'Réservez votre voiture maintenant',
+      footerDesc: 'AGHEZOU LUX CAR offre des services de location de voitures de luxe.',
+      quickLinks: 'Liens rapides', contactInfo: 'Coordonnées', footerLocation: 'Aéroport Mohammed V<br>Casablanca',
+      copyright: '© 2024 Tous droits réservés', bookingTitle: 'Réservez votre voiture',
+      name: 'Nom complet', phone: 'Téléphone', car: 'Voiture souhaitée',
+      pickup: 'Lieu de prise en charge', dropoff: 'Lieu de restitution', note: 'Remarque', send: 'Envoyer', close: 'Fermer'
+    },
+    en: {
+      home: 'Home', fleet: 'Fleet', services: 'Services', about: 'About', contact: 'Contact',
+      bookNow: 'Book Now', tagline1: 'Live a luxurious driving experience', tagline2: "LA LOCATION D'EXCELLENCE",
+      whyUs: 'Why Choose Us?', freeDelivery: 'Free Delivery', freeDeliveryDesc: 'Airport pickup and drop-off',
+      proService: 'Professional Service', proServiceDesc: 'Team available 24/7',
+      modernCars: 'Modern Cars', modernCarsDesc: 'Renewed and diverse fleet',
+      bestPrice: 'Competitive Prices', bestPriceDesc: 'Best prices for highest quality',
+      ourFleet: 'Our Fleet', allCars: 'All Cars', economy: 'Economy', suv: 'Medium', luxury: 'Luxury',
+      ourServices: 'Our Services', airportDelivery: 'Airport Delivery', airportDeliveryDesc: 'Delivery and pickup at Mohammed V Airport',
+      longTerm: 'Long Term Rental', longTermDesc: 'Special offers for long-term rental',
+      luxuryRental: 'Luxury Car Rental', luxuryRentalDesc: 'Exceptional driving experience with our luxury cars',
+      carRental: 'Car Rental', carRentalDesc: 'Wide range of cars for all your needs',
+      location: 'Location', airportLocation: 'Mohammed V International Airport - Casablanca, Morocco',
+      openNow: 'Open Now - 24/7', followInsta: 'Follow us on Instagram', moreInsta: 'See more on Instagram',
+      ctaTitle: 'Ready for your next trip?', ctaDesc: 'Book your car now',
+      footerDesc: 'AGHEZOU LUX CAR offers luxury car rental services at Mohammed V Airport.',
+      quickLinks: 'Quick Links', contactInfo: 'Contact Info', footerLocation: 'Mohammed V Airport<br>Casablanca',
+      copyright: '© 2024 All Rights Reserved', bookingTitle: 'Book Your Car Now',
+      name: 'Full Name', phone: 'Phone Number', car: 'Required Car',
+      pickup: 'Pickup Location', dropoff: 'Drop-off Location', note: 'Note', send: 'Send Booking', close: 'Close'
+    }
+  };
+
+  function detectLanguage() {
+    const lang = navigator.language || navigator.userLanguage;
+    if (lang.startsWith('fr')) return 'fr';
+    if (lang.startsWith('en')) return 'en';
+    return 'ar';
+  }
+
+  let currentLang = detectLanguage();
+
+  function changeLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.language-selector button').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+    });
+    document.querySelectorAll('[data-translate]').forEach(el => {
+      const key = el.getAttribute('data-translate');
+      if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    if (lang === 'ar') document.documentElement.setAttribute('dir', 'rtl');
+    else document.documentElement.setAttribute('dir', 'ltr');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => { changeLanguage(currentLang); });
+
+  // ===== BOOKING MODAL =====
+  function openBooking() { document.getElementById('bookingModal').classList.add('open'); }
+  function closeBooking() { document.getElementById('bookingModal').classList.remove('open'); }
+  document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBooking(); });
+
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('bookingName').value;
+    const phone = document.getElementById('bookingPhone').value;
+    const car = document.getElementById('bookingCar').value;
+    const pickup = document.getElementById('bookingPickup').value;
+    const dropoff = document.getElementById('bookingDropoff').value;
+    const note = document.getElementById('bookingNote').value;
+    const message = `*حجز سيارة جديد*%0A%0A*الاسم:* ${name}%0A*رقم الهاتف:* ${phone}%0A*السيارة:* ${car}%0A*مكان الاستلام:* ${pickup}%0A*مكان التسليم:* ${dropoff}%0A*ملاحظة:* ${note}`;
+    window.open(`https://wa.me/212600967655?text=${message}`, '_blank');
+    closeBooking();
+    this.reset();
+  });
+
+  // ===== MOBILE MENU =====
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    if (!hamburger.contains(e.target) && !menu.contains(e.target)) menu.classList.remove('open');
+  });
+
+  // ===== CAR FILTER =====
+  function filterCars(category) {
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.car-card').forEach(car => {
+      if (category === 'all' || car.getAttribute('data-category') === category) car.classList.remove('hidden');
+      else car.classList.add('hidden');
+    });
+  }
+
+  // ===== SCROLL REVEAL =====
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => { entry.target.classList.add('visible'); }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealElements.forEach(el => observer.observe(el));
+
+  // ===== ACTIVE NAV LINK =====
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => { if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id'); });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  // ===== NAVBAR SHADOW =====
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
+  });
+</script>
+
+</body>
+</html>
